@@ -1,0 +1,957 @@
+<!--
+  Bradley Richards — Personal Trainer (V3)
+  Single-file, one-page website ready for GitHub Pages.
+  Save as: index.html
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Bradley Richards — Mobile Personal Trainer. Weight loss, corrective exercise, boxing, HIIT, resistance training, rehab & mobility, mindset coaching, and nutrition planning. I come to you with all equipment." />
+  <meta name="theme-color" content="#0b0f17" />
+
+  <title>Bradley Richards | Mobile Personal Trainer</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Bradley Richards | Mobile Personal Trainer" />
+  <meta property="og:description" content="Weight loss • Corrective exercise • Boxing • HIIT • Resistance • Rehab & mobility • Mindset coaching • Nutrition planning. I come to you with all equipment." />
+  <meta property="og:type" content="website" />
+
+  <!-- Optional: Modern font (works on GitHub Pages) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #070a10;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.09);
+      --border: rgba(255,255,255,.12);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --muted2: rgba(255,255,255,.55);
+      --brand: #7c5cff; /* elegant purple */
+      --brand2: #27e0b3; /* subtle accent */
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1100px;
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 700px at 10% 10%, rgba(124,92,255,.18), transparent 55%),
+                  radial-gradient(900px 600px at 90% 15%, rgba(39,224,179,.12), transparent 52%),
+                  radial-gradient(900px 700px at 50% 100%, rgba(255,255,255,.06), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    .container{ width: min(var(--max), calc(100% - 40px)); margin-inline:auto; }
+    .pill{
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.45rem .75rem;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      border-radius: 999px;
+      color: var(--muted);
+      font-weight: 500;
+      font-size: .92rem;
+      backdrop-filter: blur(10px);
+    }
+    .dot{ width:8px; height:8px; border-radius:50%; background: linear-gradient(135deg,var(--brand),var(--brand2)); box-shadow: 0 0 0 5px rgba(124,92,255,.14); }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
+      padding: .88rem 1.05rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-weight: 600;
+      cursor:pointer;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      user-select:none;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.18); }
+    .btn:active{ transform: translateY(0px); }
+    .btn.primary{
+      border-color: rgba(124,92,255,.45);
+      background: linear-gradient(135deg, rgba(124,92,255,.98), rgba(39,224,179,.55));
+      box-shadow: 0 14px 38px rgba(124,92,255,.18);
+      color: #070a10;
+    }
+    .btn.primary:hover{ background: linear-gradient(135deg, rgba(124,92,255,1), rgba(39,224,179,.65)); }
+    .btn.ghost{
+      background: transparent;
+      border-color: rgba(255,255,255,.16);
+    }
+    .icon{
+      width: 18px; height: 18px; display:inline-block;
+    }
+
+    /* Header */
+    header{
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(7,10,16,.58);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 0;
+      gap: 12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:.65rem;
+      font-weight: 700; letter-spacing:.2px;
+    }
+    .brand-badge{
+      width: 36px; height: 36px; border-radius: 12px;
+      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(39,224,179,.55));
+      box-shadow: 0 12px 35px rgba(0,0,0,.25);
+      display:grid; place-items:center;
+      color:#0b0f17;
+      font-weight: 900;
+    }
+    nav ul{
+      list-style:none; margin:0; padding:0;
+      display:flex; align-items:center; gap: 18px;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: .95rem;
+    }
+    nav a{ opacity:.92; }
+    nav a:hover{ opacity:1; color: rgba(255,255,255,.92); }
+    .nav-right{ display:flex; align-items:center; gap: 10px; }
+    .menu-btn{ display:none; }
+
+    /* Mobile nav */
+    .mobile-nav{
+      display:none;
+      padding: 0 0 16px;
+    }
+    .mobile-nav a{
+      display:block;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-weight: 650;
+      margin-top: 10px;
+    }
+
+    /* Hero */
+    .hero{
+      padding: 58px 0 18px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 28px;
+      align-items: start;
+    }
+    h1{
+      margin: 14px 0 10px;
+      font-size: clamp(2.05rem, 4vw, 3.25rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+    .lead{
+      color: var(--muted);
+      font-size: 1.08rem;
+      margin: 0 0 18px;
+      max-width: 62ch;
+    }
+    .hero-actions{
+      display:flex; flex-wrap:wrap; gap: 10px;
+      margin-top: 18px;
+    }
+    .trust{
+      display:flex; flex-wrap:wrap; gap: 10px;
+      margin-top: 18px;
+      color: var(--muted2);
+      font-weight: 600;
+      font-size: .95rem;
+    }
+    .trust span{
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.5rem .7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.04);
+    }
+
+    .hero-card{
+      position:relative;
+      border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      box-shadow: var(--shadow);
+      padding: 18px;
+      overflow:hidden;
+    }
+    .hero-card::before{
+      content:"";
+      position:absolute; inset:-1px;
+      background:
+        radial-gradient(500px 300px at 20% 10%, rgba(124,92,255,.25), transparent 55%),
+        radial-gradient(400px 260px at 85% 30%, rgba(39,224,179,.18), transparent 55%);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .hero-card > *{ position:relative; z-index:1; }
+    .profile{
+      display:flex; align-items:center; gap: 14px;
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.16);
+      margin-bottom: 14px;
+    }
+    .avatar{
+      width: 54px; height: 54px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(255,255,255,.12));
+      display:grid; place-items:center;
+      font-weight: 900;
+      letter-spacing: .03em;
+      color: #0b0f17;
+      border: 1px solid rgba(255,255,255,.12);
+    }
+    .profile .name{ font-weight: 800; }
+    .profile .meta{ color: var(--muted); font-weight: 600; font-size: .95rem; margin-top: 2px; }
+
+    .quick-list{
+      display:grid; gap: 10px;
+      margin:0;
+      padding:0;
+      list-style:none;
+    }
+    .quick-list li{
+      display:flex; gap: 10px; align-items:flex-start;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.09);
+      background: rgba(255,255,255,.04);
+    }
+    .check{
+      flex: 0 0 auto;
+      width: 22px; height: 22px;
+      border-radius: 7px;
+      background: rgba(39,224,179,.16);
+      border: 1px solid rgba(39,224,179,.28);
+      display:grid; place-items:center;
+      margin-top: 1px;
+    }
+    .check svg{ width: 14px; height:14px; }
+    .quick-list b{ display:block; }
+    .quick-list span{ color: var(--muted); font-weight: 550; font-size: .95rem; display:block; margin-top: 2px; }
+
+    /* Sections */
+    section{
+      padding: 44px 0;
+    }
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap: 16px; margin-bottom: 16px;
+    }
+    h2{
+      margin:0;
+      font-size: clamp(1.35rem, 2.2vw, 1.9rem);
+      letter-spacing: -0.015em;
+    }
+    .section-sub{
+      margin: 0;
+      color: var(--muted);
+      max-width: 70ch;
+      font-weight: 550;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .card{
+      grid-column: span 4;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      padding: 16px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.22);
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      min-height: 140px;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.16);
+      background: rgba(255,255,255,.055);
+    }
+    .card h3{
+      margin: 2px 0 6px;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+    }
+    .card p{
+      margin: 0;
+      color: var(--muted);
+      font-weight: 550;
+    }
+    .tagrow{ display:flex; flex-wrap:wrap; gap: 8px; margin-top: 12px; }
+    .tag{
+      font-size: .86rem;
+      color: rgba(255,255,255,.80);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding: .35rem .55rem;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .panel{
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      padding: 18px;
+      box-shadow: 0 14px 44px rgba(0,0,0,.24);
+    }
+    .panel h3{ margin: 0 0 8px; }
+    .panel ul{
+      margin: 0; padding-left: 18px; color: var(--muted);
+      font-weight: 550;
+    }
+    .panel li{ margin: 8px 0; }
+
+    /* Contact */
+    .contact-wrap{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+      align-items: start;
+      margin-top: 16px;
+    }
+    form{
+      display:grid;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .field{
+      display:grid;
+      gap: 6px;
+    }
+    label{
+      color: rgba(255,255,255,.82);
+      font-weight: 650;
+      font-size: .92rem;
+    }
+    input, textarea{
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      color: var(--text);
+      padding: 12px 12px;
+      outline: none;
+      font: inherit;
+    }
+    textarea{ min-height: 120px; resize: vertical; }
+    input:focus, textarea:focus{
+      border-color: rgba(124,92,255,.55);
+      box-shadow: 0 0 0 4px rgba(124,92,255,.12);
+    }
+    .helper{
+      color: var(--muted2);
+      font-weight: 600;
+      font-size: .92rem;
+      margin-top: 10px;
+    }
+    .contact-cards{
+      display:grid; gap: 12px;
+    }
+    .contact-card{
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      padding: 16px;
+    }
+    .contact-card b{ display:block; margin-bottom: 6px; }
+    .contact-card p{ margin: 0; color: var(--muted); font-weight: 560; }
+    .contact-actions{ display:flex; flex-wrap:wrap; gap: 10px; margin-top: 12px; }
+
+    footer{
+      padding: 26px 0 34px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      color: var(--muted2);
+      font-weight: 600;
+    }
+    .foot{
+      display:flex; align-items:center; justify-content:space-between;
+      gap: 12px; flex-wrap:wrap;
+    }
+
+    /* Small screens */
+    @media (max-width: 900px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      nav ul{ display:none; }
+      .menu-btn{ display:inline-flex; }
+      .mobile-nav{ display:block; }
+      .grid{ gap: 12px; }
+      .card{ grid-column: span 6; }
+      .split{ grid-template-columns: 1fr; }
+      .contact-wrap{ grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px){
+      .card{ grid-column: span 12; }
+      .trust span{ width: 100%; justify-content:flex-start; }
+      .btn{ width: 100%; }
+      .nav-right .btn.ghost{ display:none; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior: auto; }
+      .btn, .card{ transition: none; }
+    }
+  </style>
+
+  <!-- LocalBusiness structured data (safe + simple) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Bradley Richards Personal Training",
+    "description": "Mobile personal training: weight loss, corrective exercise, boxing, HIIT, resistance training, rehab & mobility, mindset coaching, and nutrition planning.",
+    "telephone": "+44 7309 543361",
+    "email": "bradabr@protonmail.com",
+    "areaServed": "United Kingdom",
+    "sameAs": []
+  }
+  </script>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="Go to top">
+          <span class="brand-badge">BR</span>
+          <span>Bradley Richards</span>
+        </a>
+
+        <nav aria-label="Primary">
+          <ul>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#approach">Approach</a></li>
+            <li><a href="#credentials">Credentials</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-right">
+          <a class="btn ghost" href="#contact">Enquire</a>
+          <button class="btn menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileNav">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Menu
+          </button>
+        </div>
+      </div>
+
+      <div class="mobile-nav" id="mobileNav" hidden>
+        <a href="#services">Services</a>
+        <a href="#approach">Approach</a>
+        <a href="#credentials">Credentials</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <span class="pill"><span class="dot"></span> Mobile Personal Training • I come to you (with equipment)</span>
+
+        <div class="hero-grid">
+          <div>
+            <h1>Transform your body and performance—<br/>with a coach who brings the gym to your home.</h1>
+            <p class="lead">
+              I’m <b>Bradley Richards</b>, a <b>Level 4 Personal Trainer</b> (NASM Level 3 & 4),
+              specialising in <b>weight loss</b> and <b>corrective exercise</b>. With over a decade of experience
+              training individuals, groups, and sports teams—including <b>5 years in Kuwait</b> working with
+              high net-worth clients—I deliver a truly <b>holistic</b> plan that fits your life.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn primary" id="whatsAppTop" href="#contact">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M20.5 11.8a8.5 8.5 0 0 1-12.6 7.5L4 20l.8-3.7A8.5 8.5 0 1 1 20.5 11.8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  <path d="M8.7 9.3c.4-1 .9-1.1 1.3-1.1.3 0 .6 0 .9.7.3.7.6 1.4.5 1.6-.1.2-.2.4-.4.6-.2.2-.4.4-.2.8.2.4.9 1.4 1.9 2.2 1.3 1.1 2.4 1.4 2.8 1.6.4.2.6.2.8-.1.2-.3.9-1 .9-1s.4-.2.8 0c.4.2 2.5 1.2 2.5 1.6 0 .4-.2 1.6-.9 2-.7.4-1.6.6-3.4-.1-1.8-.7-4.1-2.2-5.7-4.4-1.6-2.2-2.1-3.9-2.2-4.6-.1-.7.2-1.4.3-1.8Z" fill="currentColor" opacity=".85"/>
+                </svg>
+                WhatsApp me (preferred)
+              </a>
+
+              <a class="btn" href="tel:+447309543361" aria-label="Call Bradley Richards">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M6.6 10.8c1.5 3 3.6 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.1 21 3 13.9 3 5c0-.6.4-1 1-1h3.2c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1l-2.2 2.2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                </svg>
+                Call
+              </a>
+
+              <a class="btn" href="mailto:bradabr@protonmail.com?subject=Personal%20Training%20Enquiry%20(Website)&body=Hi%20Bradley%2C%0A%0AI%E2%80%99m%20interested%20in%20personal%20training.%0A%0AName%3A%20%0AGoals%3A%20%0ALocation%3A%20%0AAvailability%3A%20%0A%0AThanks!" aria-label="Email Bradley">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="2" />
+                  <path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Email
+              </a>
+            </div>
+
+            <div class="trust" aria-label="Highlights">
+              <span>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 2l3 7 7 .6-5.3 4.6 1.7 7-6.4-3.8-6.4 3.8 1.7-7L2 9.6 9 9l3-7Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                </svg>
+                10+ years coaching experience
+              </span>
+              <span>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 21s7-4.6 7-11V5l-7-3-7 3v5c0 6.4 7 11 7 11Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                </svg>
+                NASM Level 3 & 4
+              </span>
+              <span>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M4 20V10l8-6 8 6v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M9 20v-6h6v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Train at home (equipment included)
+              </span>
+            </div>
+          </div>
+
+          <aside class="hero-card" aria-label="Quick overview card">
+            <div class="profile">
+              <div class="avatar" aria-hidden="true">BR</div>
+              <div>
+                <div class="name">Bradley Richards</div>
+                <div class="meta">Mobile PT • Weight loss • Corrective exercise</div>
+              </div>
+            </div>
+
+            <ul class="quick-list">
+              <li>
+                <div class="check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="m20 6-11 11-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <b>Results-focused plan</b>
+                  <span>Training + mobility + mindset + nutrition structure.</span>
+                </div>
+              </li>
+              <li>
+                <div class="check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="m20 6-11 11-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <b>Any level</b>
+                  <span>Beginner-friendly, athlete-ready, rehab-aware coaching.</span>
+                </div>
+              </li>
+              <li>
+                <div class="check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="m20 6-11 11-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <b>Flexible formats</b>
+                  <span>1:1, small groups, teams — at your place.</span>
+                </div>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <h2>Services</h2>
+            <p class="section-sub">A wide variety of coaching options—built around your goal, schedule, and lifestyle.</p>
+          </div>
+        </div>
+
+        <div class="grid" role="list">
+          <article class="card" role="listitem">
+            <h3>Weight Loss Coaching</h3>
+            <p>Structured training plus realistic habits to make progress you can keep.</p>
+            <div class="tagrow">
+              <span class="tag">Fat loss</span><span class="tag">Accountability</span><span class="tag">Lifestyle</span>
+            </div>
+          </article>
+
+          <article class="card" role="listitem">
+            <h3>Corrective Exercise</h3>
+            <p>Improve movement quality, posture, and strength where it matters most.</p>
+            <div class="tagrow">
+              <span class="tag">Assessment-led</span><span class="tag">Technique</span><span class="tag">Progressions</span>
+            </div>
+          </article>
+
+          <article class="card" role="listitem">
+            <h3>Boxing Training</h3>
+            <p>Pad work, footwork, conditioning, and confidence—beginner to advanced.</p>
+            <div class="tagrow">
+              <span class="tag">Pads</span><span class="tag">Footwork</span><span class="tag">Conditioning</span>
+            </div>
+          </article>
+
+          <article class="card" role="listitem">
+            <h3>Resistance Training</h3>
+            <p>Build strength and shape with intelligent programming and great form.</p>
+            <div class="tagrow">
+              <span class="tag">Strength</span><span class="tag">Muscle tone</span><span class="tag">Performance</span>
+            </div>
+          </article>
+
+          <article class="card" role="listitem">
+            <h3>HIIT & Conditioning</h3>
+            <p>Efficient sessions that challenge you—scaled safely for your fitness level.</p>
+            <div class="tagrow">
+              <span class="tag">HIIT</span><span class="tag">Fitness</span><span class="tag">Energy</span>
+            </div>
+          </article>
+
+          <article class="card" role="listitem">
+            <h3>Rehab & Mobility</h3>
+            <p>Mobility-focused work to restore function and keep you training consistently.</p>
+            <div class="tagrow">
+              <span class="tag">Mobility</span><span class="tag">Stability</span><span class="tag">Recovery</span>
+            </div>
+          </article>
+
+          <article class="card" role="listitem">
+            <h3>Mindset Coaching</h3>
+            <p>Confidence, consistency, and clarity—so progress becomes automatic.</p>
+            <div class="tagrow">
+              <span class="tag">Motivation</span><span class="tag">Habits</span><span class="tag">Resilience</span>
+            </div>
+          </article>
+
+          <article class="card" role="listitem">
+            <h3>Nutrition Planning</h3>
+            <p>Nutritional advice with meal plans, schedules, and practical routines.</p>
+            <div class="tagrow">
+              <span class="tag">Meal plan</span><span class="tag">Schedule</span><span class="tag">Sustainable</span>
+            </div>
+          </article>
+
+          <article class="card" role="listitem">
+            <h3>Groups & Teams</h3>
+            <p>Performance-focused sessions for groups, clubs, and sports teams.</p>
+            <div class="tagrow">
+              <span class="tag">Teams</span><span class="tag">Sports</span><span class="tag">Group PT</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- APPROACH -->
+    <section id="approach">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <h2>My approach</h2>
+            <p class="section-sub">
+              Holistic coaching that blends training, movement quality, recovery, and lifestyle—so your results actually stick.
+            </p>
+          </div>
+        </div>
+
+        <div class="split">
+          <div class="panel">
+            <h3>What you can expect</h3>
+            <ul>
+              <li><b>Assessment-led training:</b> we start with goals, movement, and constraints (time, equipment, injuries).</li>
+              <li><b>Clear progression:</b> you’ll know what we’re doing, why we’re doing it, and how we’ll level up.</li>
+              <li><b>Coaching, not punishing:</b> hard sessions where needed—but always intelligent and safe.</li>
+              <li><b>Equipment included:</b> I bring what’s needed so you can focus on showing up.</li>
+            </ul>
+          </div>
+
+          <div class="panel">
+            <h3>Training pillars</h3>
+            <ul>
+              <li><b>Strength:</b> strong bodies perform better and stay leaner.</li>
+              <li><b>Conditioning:</b> fitness that improves energy, work capacity, and confidence.</li>
+              <li><b>Mobility & control:</b> move well to train consistently.</li>
+              <li><b>Nutrition structure:</b> realistic plans that work with your routine.</li>
+              <li><b>Mindset:</b> consistency beats intensity—every time.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CREDENTIALS -->
+    <section id="credentials">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <h2>Credentials & experience</h2>
+            <p class="section-sub">Professional, discreet, and tailored—whether you’re just starting or training at a high level.</p>
+          </div>
+        </div>
+
+        <div class="grid">
+          <article class="card" style="grid-column: span 6;">
+            <h3>Qualifications</h3>
+            <p>
+              <b>Level 4 Personal Trainer</b> • <b>NASM Level 3 & 4</b><br/>
+              Corrective exercise focus with a results-driven coaching style.
+            </p>
+            <div class="tagrow">
+              <span class="tag">Level 4 PT</span><span class="tag">NASM</span><span class="tag">Corrective exercise</span>
+            </div>
+          </article>
+
+          <article class="card" style="grid-column: span 6;">
+            <h3>Over a decade coaching</h3>
+            <p>
+              10+ years training <b>individuals</b>, <b>groups</b>, and <b>sports teams</b>, including
+              <b>5 years in Kuwait</b> working with high net-worth clients.
+            </p>
+            <div class="tagrow">
+              <span class="tag">1:1</span><span class="tag">Groups</span><span class="tag">Teams</span><span class="tag">Kuwait (5 yrs)</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <h2>Contact</h2>
+            <p class="section-sub">Tell me your goal and availability. WhatsApp is preferred, and email is great too.</p>
+          </div>
+        </div>
+
+        <div class="contact-wrap">
+          <div class="panel">
+            <h3>Send a quick message</h3>
+            <p class="section-sub" style="margin-top:6px;">
+              This form will open WhatsApp (preferred) or your email app—no backend needed for GitHub Pages.
+            </p>
+
+            <form id="contactForm">
+              <div class="field">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" placeholder="Your name" autocomplete="name" required />
+              </div>
+
+              <div class="field">
+                <label for="goal">Main goal</label>
+                <input id="goal" name="goal" type="text" placeholder="Weight loss, boxing, rehab, strength…" required />
+              </div>
+
+              <div class="field">
+                <label for="location">Location (area/postcode)</label>
+                <input id="location" name="location" type="text" placeholder="e.g. SW, NW, or your postcode" />
+              </div>
+
+              <div class="field">
+                <label for="message">Details</label>
+                <textarea id="message" name="message" placeholder="Availability, training history, any injuries, preferred session length…" required></textarea>
+              </div>
+
+              <div class="hero-actions" style="margin-top: 6px;">
+                <button class="btn primary" type="submit" data-mode="whatsapp">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M20.5 11.8a8.5 8.5 0 0 1-12.6 7.5L4 20l.8-3.7A8.5 8.5 0 1 1 20.5 11.8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M8.7 9.3c.4-1 .9-1.1 1.3-1.1.3 0 .6 0 .9.7.3.7.6 1.4.5 1.6-.1.2-.2.4-.4.6-.2.2-.4.4-.2.8.2.4.9 1.4 1.9 2.2 1.3 1.1 2.4 1.4 2.8 1.6.4.2.6.2.8-.1.2-.3.9-1 .9-1s.4-.2.8 0c.4.2 2.5 1.2 2.5 1.6 0 .4-.2 1.6-.9 2-.7.4-1.6.6-3.4-.1-1.8-.7-4.1-2.2-5.7-4.4-1.6-2.2-2.1-3.9-2.2-4.6-.1-.7.2-1.4.3-1.8Z" fill="currentColor" opacity=".85"/>
+                  </svg>
+                  Send via WhatsApp
+                </button>
+
+                <button class="btn" type="button" id="sendEmailBtn">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="2" />
+                    <path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  Send via Email
+                </button>
+              </div>
+
+              <p class="helper" id="formHelper">
+                Tip: include your weekly availability and any injuries so I can recommend the best plan.
+              </p>
+            </form>
+          </div>
+
+          <div class="contact-cards">
+            <div class="contact-card">
+              <b>WhatsApp (preferred)</b>
+              <p><a href="https://wa.me/447309543361" target="_blank" rel="noopener">+44 7309 543361</a></p>
+              <div class="contact-actions">
+                <a class="btn" href="https://wa.me/447309543361" target="_blank" rel="noopener">Open WhatsApp</a>
+                <a class="btn" href="tel:+447309543361">Call</a>
+              </div>
+            </div>
+
+            <div class="contact-card">
+              <b>Email</b>
+              <p><a href="mailto:bradabr@protonmail.com">bradabr@protonmail.com</a></p>
+              <div class="contact-actions">
+                <a class="btn" href="mailto:bradabr@protonmail.com?subject=Personal%20Training%20Enquiry%20(Website)">Email me</a>
+              </div>
+            </div>
+
+            <div class="contact-card">
+              <b>What to send</b>
+              <p>Goal • availability • location • training background • injuries/limitations • preferred session length.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="foot">
+        <div>© <span id="year"></span> Bradley Richards • Mobile Personal Training</div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="pill" href="#top" aria-label="Back to top">Back to top ↑</a>
+          <span class="pill">WhatsApp: 07309 543361</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ===== Utilities =====
+    const byId = (id) => document.getElementById(id);
+
+    const PHONE_E164 = "447309543361"; // wa.me uses country code without "+"
+    const EMAIL = "bradabr@protonmail.com";
+
+    function buildMessage(){
+      const name = byId("name").value.trim();
+      const goal = byId("goal").value.trim();
+      const location = byId("location").value.trim();
+      const msg = byId("message").value.trim();
+
+      const lines = [
+        "Hi Bradley,",
+        "",
+        `Name: ${name || "-"}`,
+        `Goal: ${goal || "-"}`,
+        `Location: ${location || "-"}`,
+        "",
+        "Details:",
+        msg || "-",
+        "",
+        "Sent from your website."
+      ];
+      return lines.join("\n");
+    }
+
+    function openWhatsApp(){
+      const text = encodeURIComponent(buildMessage());
+      // Use wa.me for the cleanest cross-device behavior
+      window.open(`https://wa.me/${PHONE_E164}?text=${text}`, "_blank", "noopener");
+    }
+
+    function openEmail(){
+      const subject = encodeURIComponent("Personal Training Enquiry (Website)");
+      const body = encodeURIComponent(buildMessage());
+      window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
+    }
+
+    // ===== Header mobile menu =====
+    const menuBtn = byId("menuBtn");
+    const mobileNav = byId("mobileNav");
+
+    menuBtn?.addEventListener("click", () => {
+      const isOpen = menuBtn.getAttribute("aria-expanded") === "true";
+      menuBtn.setAttribute("aria-expanded", String(!isOpen));
+      mobileNav.hidden = isOpen;
+    });
+
+    // Close mobile menu after clicking a link
+    mobileNav?.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", () => {
+        menuBtn.setAttribute("aria-expanded", "false");
+        mobileNav.hidden = true;
+      });
+    });
+
+    // ===== Contact form behavior =====
+    const form = byId("contactForm");
+    const sendEmailBtn = byId("sendEmailBtn");
+
+    // Top CTA should open WhatsApp with a friendly prefill (optional)
+    const whatsAppTop = byId("whatsAppTop");
+    whatsAppTop?.addEventListener("click", (e) => {
+      // If user clicks and they haven't filled the form yet, still open WhatsApp with a short prompt
+      // but allow normal scroll if they prefer contact section.
+      // We'll only intercept if the user holds Alt/Option to quickly message.
+      if (e.altKey) {
+        e.preventDefault();
+        const text = encodeURIComponent("Hi Bradley, I found your website and I’d like to enquire about personal training.");
+        window.open(`https://wa.me/${PHONE_E164}?text=${text}`, "_blank", "noopener");
+      }
+    });
+
+    form?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      // Prefer WhatsApp by default
+      openWhatsApp();
+    });
+
+    sendEmailBtn?.addEventListener("click", () => {
+      // Basic validation
+      if (!byId("name").value.trim() || !byId("goal").value.trim() || !byId("message").value.trim()) {
+        byId("formHelper").textContent = "Please fill in Name, Goal, and Details before sending.";
+        byId("formHelper").style.color = "rgba(39,224,179,.95)";
+        setTimeout(() => {
+          byId("formHelper").textContent = "Tip: include your weekly availability and any injuries so I can recommend the best plan.";
+          byId("formHelper").style.color = "";
+        }, 3500);
+        return;
+      }
+      openEmail();
+    });
+
+    // Footer year
+    byId("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
