@@ -3,21 +3,20 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta name="description" content="Fighting Fit — Mobile Personal Training in Carmarthenshire. 30, 60 & 90 minute sessions. Holistic coaching. I come to you — indoors or outdoors." />
-<meta name="theme-color" content="#0e141b" />
+<meta name="description" content="Fighting Fit — Mobile Personal Training in Carmarthenshire. 30, 60 & 90 minute sessions. Holistic coaching. We come to you — indoors or outdoors." />
 <title>Fighting Fit | Mobile Personal Training</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
---bg:#0e141b;
---panel:#1a222c;
---accent:#6ed3c4;
---accent2:#89a8ff;
---text:#f4f7fb;
---muted:#a8b3c2;
---radius:18px;
+--bg:#0b1117;
+--panel:#141c25;
+--accent:#7ce0d6;
+--accent2:#9aa8ff;
+--text:#f2f6fb;
+--muted:#9fb0c4;
+--radius:20px;
 --max:1100px;
 }
 
@@ -25,71 +24,105 @@
 body{
 margin:0;
 font-family:Inter,system-ui;
-background:var(--bg);
+background:radial-gradient(circle at 20% 20%,#1a2430 0%,#0b1117 60%);
 color:var(--text);
 line-height:1.6;
 }
 
 .container{width:min(var(--max),90%);margin:auto}
-section{padding:60px 0}
-h1,h2,h3{margin:0 0 12px}
+section{padding:80px 0}
+
+h1{font-size:clamp(2rem,4vw,3rem)}
+h2{font-size:1.8rem;margin-bottom:20px}
+h3{margin-top:0}
+
 p{color:var(--muted)}
 
 .btn{
 display:inline-block;
-padding:12px 22px;
+padding:14px 26px;
 border-radius:999px;
 font-weight:600;
 background:linear-gradient(135deg,var(--accent),var(--accent2));
-color:#0e141b;
+color:#0b1117;
 text-decoration:none;
-margin-top:12px;
+transition:.3s;
 }
+.btn:hover{transform:translateY(-3px)}
 
 .card{
 background:var(--panel);
-padding:24px;
+padding:26px;
 border-radius:var(--radius);
+transition:.3s;
+cursor:pointer;
+border:1px solid #1e2a36;
+}
+.card:hover{
+transform:translateY(-6px);
+border-color:var(--accent);
 }
 
 .grid{
 display:grid;
-gap:20px;
+gap:24px;
 }
-
-@media(min-width:800px){
+@media(min-width:900px){
 .grid-3{grid-template-columns:repeat(3,1fr)}
 .grid-2{grid-template-columns:repeat(2,1fr)}
 }
 
 header{
-padding:20px 0;
-border-bottom:1px solid #1f2a36;
+padding:25px 0;
+border-bottom:1px solid #1c2733;
 }
 
 .brand{
 font-weight:800;
-font-size:1.3rem;
+font-size:1.4rem;
+letter-spacing:.5px;
 }
 
 .hero{
-padding:80px 0 60px;
+padding:100px 0 80px;
+text-align:center;
 }
 
-.hero h1{
-font-size:2.5rem;
+.hero span{
+background:linear-gradient(135deg,var(--accent),var(--accent2));
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
-.highlight{
-color:var(--accent);
-font-weight:600;
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.7);
+display:none;
+align-items:center;
+justify-content:center;
+padding:20px;
+}
+.modal-content{
+background:var(--panel);
+max-width:600px;
+padding:40px;
+border-radius:var(--radius);
+position:relative;
+}
+.close{
+position:absolute;
+right:20px;
+top:15px;
+cursor:pointer;
+font-size:1.5rem;
 }
 
 footer{
-padding:30px 0;
-border-top:1px solid #1f2a36;
+padding:40px 0;
+border-top:1px solid #1c2733;
+text-align:center;
 color:var(--muted);
-font-size:.9rem;
 }
 </style>
 </head>
@@ -104,11 +137,10 @@ font-size:.9rem;
 
 <section class="hero">
 <div class="container">
-<h1>Friendly, holistic coaching — <br><span class="highlight">at your convenience.</span></h1>
+<h1>Build strength. Move well. <span>Train for life.</span></h1>
 <p>
-Fighting Fit is mobile personal training designed around you.  
-Indoors or outdoors. At home, in your garden, or a local green space.  
-30, 60 or 90 minute sessions tailored to your goals.
+Friendly, holistic mobile personal training in Carmarthenshire.  
+30, 60 & 90 minute sessions. Indoors or outdoors. We come to you.
 </p>
 <a href="#contact" class="btn">Check Availability</a>
 </div>
@@ -116,108 +148,130 @@ Indoors or outdoors. At home, in your garden, or a local green space.
 
 <section>
 <div class="container">
-<h2>We Come To You</h2>
+<h2>Training Styles</h2>
 <div class="grid grid-3">
-<div class="card">
-<h3>Home Sessions</h3>
-<p>Private training in your living room, garage or garden. No gym intimidation.</p>
+
+<div class="card" onclick="openModal('strength')">
+<h3>Strength & Resistance Training</h3>
+<p>Build strength safely and progressively.</p>
 </div>
-<div class="card">
-<h3>Outdoor Training</h3>
-<p>Fresh air sessions in parks, fields or local spaces — energising and effective.</p>
+
+<div class="card" onclick="openModal('corrective')">
+<h3>Corrective Exercise</h3>
+<p>Improve posture, movement and joint health.</p>
 </div>
-<div class="card">
-<h3>All Equipment Included</h3>
-<p>I bring everything needed so you can focus on showing up and progressing.</p>
+
+<div class="card" onclick="openModal('weightloss')">
+<h3>Weight Loss Coaching</h3>
+<p>Sustainable fat loss without extreme dieting.</p>
 </div>
+
+<div class="card" onclick="openModal('boxing')">
+<h3>Boxing & Pad Work</h3>
+<p>Skill-based, energising, confidence-building sessions.</p>
+</div>
+
+<div class="card" onclick="openModal('hiit')">
+<h3>HIIT & Conditioning</h3>
+<p>Efficient sessions tailored to your level.</p>
+</div>
+
+<div class="card" onclick="openModal('mobility')">
+<h3>Mobility & Rehab-Focused Training</h3>
+<p>Move better, feel better, train longer.</p>
+</div>
+
 </div>
 </div>
 </section>
 
 <section>
 <div class="container">
-<h2>Session Options</h2>
-<div class="grid grid-3">
-<div class="card">
-<h3>30 Minutes</h3>
-<p>Focused, efficient sessions for busy schedules.</p>
-</div>
-<div class="card">
-<h3>60 Minutes</h3>
-<p>Balanced sessions with warm-up, training and progression work.</p>
-</div>
-<div class="card">
-<h3>90 Minutes</h3>
-<p>Comprehensive coaching including mobility, strength and deeper skill work.</p>
-</div>
-</div>
-</div>
-</section>
-
-<section>
-<div class="container">
-<h2>Our Approach</h2>
+<h2>Why Fighting Fit?</h2>
 <div class="grid grid-2">
 <div class="card">
-<h3>Holistic Coaching</h3>
-<p>
-Training, movement quality, recovery, and sustainable nutrition habits — working together.
-</p>
+<h3>We Come To You</h3>
+<p>Home, garden, park or outdoor space — at your convenience. All equipment included.</p>
 </div>
 <div class="card">
-<h3>Safe & Sustainable</h3>
+<h3>Experience You Can Trust</h3>
 <p>
-We prioritise longevity. Smart programming, proper technique and steady progression.
+Level 3 Personal Trainer  
+Level 4 Corrective Exercise Specialist  
+Level 4 Weight Loss Specialist  
+10 Years Coaching (1-1 & Groups)
 </p>
 </div>
-</div>
-</div>
-</section>
-
-<section>
-<div class="container">
-<h2>Training Styles We Offer</h2>
-<div class="grid grid-3">
-<div class="card"><p>Strength & Resistance Training</p></div>
-<div class="card"><p>Corrective Exercise</p></div>
-<div class="card"><p>Weight Loss Coaching</p></div>
-<div class="card"><p>Boxing & Pad Work</p></div>
-<div class="card"><p>HIIT & Conditioning</p></div>
-<div class="card"><p>Mobility & Rehab-Focused Training</p></div>
-</div>
-</div>
-</section>
-
-<section>
-<div class="container">
-<h2>Experience & Qualifications</h2>
-<div class="card">
-<p>
-• Level 3 Personal Trainer  
-• Level 4 Corrective Exercise Specialist (CES)  
-• Level 4 Weight Loss Specialist (WLS)  
-• 10 Years Coaching Experience (1-to-1 & Group Training)
-</p>
 </div>
 </div>
 </section>
 
 <section id="contact">
-<div class="container">
-<h2>Get Started</h2>
-<p>
-Tell me your goal, location, and preferred session length (30/60/90 minutes).  
-I’ll recommend the best approach and available times.
-</p>
+<div class="container" style="text-align:center">
+<h2>Ready to Start?</h2>
+<p>Tell me your goal, location and preferred session length.</p>
 <a href="https://wa.me/447309543361" class="btn">Message on WhatsApp</a>
 </div>
 </section>
 
 <footer>
-<div class="container">
-Fighting Fit — Mobile Personal Training • Carmarthenshire  
-</div>
+Fighting Fit • Mobile Personal Training • Carmarthenshire
 </footer>
+
+<!-- MODALS -->
+
+<div id="modal" class="modal" onclick="closeModal(event)">
+<div class="modal-content" id="modal-content">
+<span class="close" onclick="closeModal(event)">×</span>
+<div id="modal-body"></div>
+</div>
+</div>
+
+<script>
+const content = {
+strength: `
+<h2>Strength & Resistance Training</h2>
+<p>Build muscle, improve bone density, increase confidence and resilience.</p>
+<p>We focus on safe technique, progressive overload, and long-term results — whether beginner or experienced.</p>
+`,
+corrective: `
+<h2>Corrective Exercise</h2>
+<p>Target imbalances, improve posture and restore proper movement patterns.</p>
+<p>Ideal if you sit long hours, have recurring aches, or want to train smarter.</p>
+`,
+weightloss: `
+<h2>Weight Loss Coaching</h2>
+<p>Sustainable fat loss built around your lifestyle.</p>
+<p>No crash dieting — just smart training, simple nutrition structure and accountability.</p>
+`,
+boxing: `
+<h2>Boxing & Pad Work</h2>
+<p>Fun, skill-based training that builds coordination, fitness and confidence.</p>
+<p>Beginner-friendly and scalable to all levels.</p>
+`,
+hiit: `
+<h2>HIIT & Conditioning</h2>
+<p>Short bursts of structured intensity for cardiovascular fitness and energy.</p>
+<p>Always scaled safely to your experience and joint health.</p>
+`,
+mobility: `
+<h2>Mobility & Rehab-Focused Training</h2>
+<p>Improve flexibility, joint stability and muscular balance.</p>
+<p>Designed to support longevity and reduce injury risk.</p>
+`
+};
+
+function openModal(key){
+document.getElementById("modal-body").innerHTML = content[key];
+document.getElementById("modal").style.display = "flex";
+}
+
+function closeModal(e){
+if(e.target.id === "modal" || e.target.className === "close"){
+document.getElementById("modal").style.display = "none";
+}
+}
+</script>
 
 </body>
 </html>
