@@ -1,1064 +1,223 @@
-<!--
-  Bradley Richards — Personal Trainer (Funnel Version)
-  Single-file, one-page website ready for GitHub Pages.
-  Save as: index.html
--->
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Bradley Richards — Mobile Personal Trainer in Carmarthenshire. Weight loss, corrective exercise, boxing, HIIT, resistance training, rehab & mobility, mindset coaching, and nutrition structure. I come to you with equipment." />
-  <meta name="theme-color" content="#0b0f17" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="Fighting Fit — Mobile Personal Training in Carmarthenshire. 30, 60 & 90 minute sessions. Holistic coaching. I come to you — indoors or outdoors." />
+<meta name="theme-color" content="#0e141b" />
+<title>Fighting Fit | Mobile Personal Training</title>
 
-  <title>Bradley Richards | Mobile Personal Trainer (Carmarthenshire)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Bradley Richards | Mobile Personal Trainer" />
-  <meta property="og:description" content="Carmarthenshire mobile PT • Evenings only • Weight loss • Corrective exercise • Boxing • Strength • Mobility. Message on WhatsApp to check availability." />
-  <meta property="og:type" content="website" />
+<style>
+:root{
+--bg:#0e141b;
+--panel:#1a222c;
+--accent:#6ed3c4;
+--accent2:#89a8ff;
+--text:#f4f7fb;
+--muted:#a8b3c2;
+--radius:18px;
+--max:1100px;
+}
 
-  <!-- Optional: Modern font (works on GitHub Pages) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:Inter,system-ui;
+background:var(--bg);
+color:var(--text);
+line-height:1.6;
+}
 
-  <style>
-    :root{
-      --bg: #070a10;
-      --panel: rgba(255,255,255,.06);
-      --panel2: rgba(255,255,255,.09);
-      --border: rgba(255,255,255,.12);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.70);
-      --muted2: rgba(255,255,255,.55);
-      --brand: #7c5cff;
-      --brand2: #27e0b3;
-      --shadow: 0 18px 60px rgba(0,0,0,.45);
-      --radius: 18px;
-      --radius2: 26px;
-      --max: 1100px;
-    }
+.container{width:min(var(--max),90%);margin:auto}
+section{padding:60px 0}
+h1,h2,h3{margin:0 0 12px}
+p{color:var(--muted)}
 
-    *{ box-sizing:border-box; }
-    html{ scroll-behavior:smooth; }
-    body{
-      margin:0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background: radial-gradient(1200px 700px at 10% 10%, rgba(124,92,255,.18), transparent 55%),
-                  radial-gradient(900px 600px at 90% 15%, rgba(39,224,179,.12), transparent 52%),
-                  radial-gradient(900px 700px at 50% 100%, rgba(255,255,255,.06), transparent 55%),
-                  var(--bg);
-      color: var(--text);
-      line-height: 1.55;
-    }
+.btn{
+display:inline-block;
+padding:12px 22px;
+border-radius:999px;
+font-weight:600;
+background:linear-gradient(135deg,var(--accent),var(--accent2));
+color:#0e141b;
+text-decoration:none;
+margin-top:12px;
+}
 
-    a{ color: inherit; text-decoration: none; }
-    .container{ width: min(var(--max), calc(100% - 40px)); margin-inline:auto; }
+.card{
+background:var(--panel);
+padding:24px;
+border-radius:var(--radius);
+}
 
-    .pill{
-      display:inline-flex; align-items:center; gap:.5rem;
-      padding:.45rem .75rem;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.05);
-      border-radius: 999px;
-      color: var(--muted);
-      font-weight: 600;
-      font-size: .92rem;
-      backdrop-filter: blur(10px);
-    }
-    .dot{ width:8px; height:8px; border-radius:50%; background: linear-gradient(135deg,var(--brand),var(--brand2)); box-shadow: 0 0 0 5px rgba(124,92,255,.14); }
+.grid{
+display:grid;
+gap:20px;
+}
 
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
-      padding: .88rem 1.05rem;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-      font-weight: 700;
-      cursor:pointer;
-      transition: transform .18s ease, background .18s ease, border-color .18s ease;
-      user-select:none;
-      white-space: nowrap;
-    }
-    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.18); }
-    .btn:active{ transform: translateY(0px); }
-    .btn.primary{
-      border-color: rgba(124,92,255,.45);
-      background: linear-gradient(135deg, rgba(124,92,255,.98), rgba(39,224,179,.55));
-      box-shadow: 0 14px 38px rgba(124,92,255,.18);
-      color: #070a10;
-    }
-    .btn.primary:hover{ background: linear-gradient(135deg, rgba(124,92,255,1), rgba(39,224,179,.65)); }
-    .btn.ghost{ background: transparent; border-color: rgba(255,255,255,.16); }
-    .btn.small{ padding: .65rem .9rem; font-size: .95rem; }
+@media(min-width:800px){
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-2{grid-template-columns:repeat(2,1fr)}
+}
 
-    .icon{ width: 18px; height: 18px; display:inline-block; }
+header{
+padding:20px 0;
+border-bottom:1px solid #1f2a36;
+}
 
-    /* Header */
-    header{
-      position: sticky; top: 0; z-index: 50;
-      background: rgba(7,10,16,.58);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-    .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      padding: 14px 0;
-      gap: 12px;
-    }
-    .brand{ display:flex; align-items:center; gap:.65rem; font-weight: 850; letter-spacing:.2px; }
-    .brand small{ display:block; color: var(--muted2); font-weight: 700; margin-top: 2px; }
-    .brand-badge{
-      width: 36px; height: 36px; border-radius: 12px;
-      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(39,224,179,.55));
-      box-shadow: 0 12px 35px rgba(0,0,0,.25);
-      display:grid; place-items:center;
-      color:#0b0f17;
-      font-weight: 900;
-    }
-    nav ul{
-      list-style:none; margin:0; padding:0;
-      display:flex; align-items:center; gap: 18px;
-      color: var(--muted);
-      font-weight: 700;
-      font-size: .95rem;
-    }
-    nav a{ opacity:.92; }
-    nav a:hover{ opacity:1; color: rgba(255,255,255,.92); }
-    .nav-right{ display:flex; align-items:center; gap: 10px; }
-    .menu-btn{ display:none; }
+.brand{
+font-weight:800;
+font-size:1.3rem;
+}
 
-    .mobile-nav{ display:none; padding: 0 0 16px; }
-    .mobile-nav a{
-      display:block;
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.04);
-      color: var(--muted);
-      font-weight: 750;
-      margin-top: 10px;
-    }
+.hero{
+padding:80px 0 60px;
+}
 
-    /* Hero */
-    .hero{ padding: 58px 0 18px; }
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap: 28px;
-      align-items: start;
-    }
-    h1{
-      margin: 14px 0 10px;
-      font-size: clamp(2.05rem, 4vw, 3.25rem);
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-    }
-    .lead{ color: var(--muted); font-size: 1.08rem; margin: 0 0 14px; max-width: 62ch; }
-    .hero-actions{ display:flex; flex-wrap:wrap; gap: 10px; margin-top: 16px; }
+.hero h1{
+font-size:2.5rem;
+}
 
-    .notice{
-      margin-top: 14px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.18);
-      border-radius: 16px;
-      padding: 12px 12px;
-      color: rgba(255,255,255,.86);
-      font-weight: 700;
-      display:flex; gap: 10px; align-items:flex-start;
-    }
-    .notice b{ color: rgba(255,255,255,.92); }
-    .notice small{ display:block; color: var(--muted2); font-weight: 650; margin-top: 3px; }
+.highlight{
+color:var(--accent);
+font-weight:600;
+}
 
-    .trust{
-      display:flex; flex-wrap:wrap; gap: 10px;
-      margin-top: 16px;
-      color: var(--muted2);
-      font-weight: 700;
-      font-size: .95rem;
-    }
-    .trust span{
-      display:inline-flex; align-items:center; gap:.5rem;
-      padding:.5rem .7rem;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.04);
-    }
-
-    .hero-card{
-      position:relative;
-      border-radius: var(--radius2);
-      border: 1px solid rgba(255,255,255,.12);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      box-shadow: var(--shadow);
-      padding: 18px;
-      overflow:hidden;
-    }
-    .hero-card::before{
-      content:"";
-      position:absolute; inset:-1px;
-      background:
-        radial-gradient(500px 300px at 20% 10%, rgba(124,92,255,.25), transparent 55%),
-        radial-gradient(400px 260px at 85% 30%, rgba(39,224,179,.18), transparent 55%);
-      opacity:.9;
-      pointer-events:none;
-    }
-    .hero-card > *{ position:relative; z-index:1; }
-
-    .profile{
-      display:flex; align-items:center; gap: 14px;
-      padding: 14px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.16);
-      margin-bottom: 14px;
-    }
-    .avatar{
-      width: 54px; height: 54px;
-      border-radius: 18px;
-      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(255,255,255,.12));
-      display:grid; place-items:center;
-      font-weight: 900;
-      letter-spacing: .03em;
-      color: #0b0f17;
-      border: 1px solid rgba(255,255,255,.12);
-    }
-    .profile .name{ font-weight: 900; }
-    .profile .meta{ color: var(--muted); font-weight: 700; font-size: .95rem; margin-top: 2px; }
-
-    .quick-list{ display:grid; gap: 10px; margin:0; padding:0; list-style:none; }
-    .quick-list li{
-      display:flex; gap: 10px; align-items:flex-start;
-      padding: 12px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.09);
-      background: rgba(255,255,255,.04);
-    }
-    .check{
-      flex: 0 0 auto;
-      width: 22px; height: 22px;
-      border-radius: 7px;
-      background: rgba(39,224,179,.16);
-      border: 1px solid rgba(39,224,179,.28);
-      display:grid; place-items:center;
-      margin-top: 1px;
-    }
-    .check svg{ width: 14px; height:14px; }
-    .quick-list b{ display:block; }
-    .quick-list span{ color: var(--muted); font-weight: 600; font-size: .95rem; display:block; margin-top: 2px; }
-
-    /* Sections */
-    section{ padding: 44px 0; }
-    .section-title{ display:flex; align-items:flex-end; justify-content:space-between; gap: 16px; margin-bottom: 16px; }
-    h2{ margin:0; font-size: clamp(1.35rem, 2.2vw, 1.9rem); letter-spacing: -0.015em; }
-    .section-sub{ margin: 0; color: var(--muted); max-width: 70ch; font-weight: 600; }
-
-    .grid{ display:grid; grid-template-columns: repeat(12, 1fr); gap: 14px; margin-top: 16px; }
-    .card{
-      grid-column: span 4;
-      border-radius: var(--radius);
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      padding: 16px;
-      box-shadow: 0 12px 40px rgba(0,0,0,.22);
-      transition: transform .18s ease, border-color .18s ease, background .18s ease;
-      min-height: 140px;
-    }
-    .card:hover{ transform: translateY(-2px); border-color: rgba(255,255,255,.16); background: rgba(255,255,255,.055); }
-    .card h3{ margin: 2px 0 6px; font-size: 1.05rem; letter-spacing: -0.01em; }
-    .card p{ margin: 0; color: var(--muted); font-weight: 600; }
-
-    .tagrow{ display:flex; flex-wrap:wrap; gap: 8px; margin-top: 12px; }
-    .tag{
-      font-size: .86rem;
-      color: rgba(255,255,255,.80);
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      padding: .35rem .55rem;
-      border-radius: 999px;
-      font-weight: 700;
-    }
-
-    .split{ display:grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
-    .panel{
-      border-radius: var(--radius);
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      padding: 18px;
-      box-shadow: 0 14px 44px rgba(0,0,0,.24);
-    }
-    .panel h3{ margin: 0 0 8px; }
-    .panel ul{ margin: 0; padding-left: 18px; color: var(--muted); font-weight: 600; }
-    .panel li{ margin: 8px 0; }
-
-    /* Steps */
-    .steps .card{ min-height: unset; }
-    .step-num{
-      width: 34px; height: 34px; border-radius: 12px;
-      display:grid; place-items:center;
-      font-weight: 900;
-      color: #070a10;
-      background: linear-gradient(135deg, rgba(124,92,255,.98), rgba(39,224,179,.55));
-      border: 1px solid rgba(255,255,255,.12);
-      box-shadow: 0 12px 30px rgba(0,0,0,.22);
-      margin-bottom: 10px;
-    }
-
-    /* Pricing */
-    .pricing-grid .card{ grid-column: span 4; }
-    .price{
-      font-size: 1.9rem;
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      margin: 8px 0 6px;
-    }
-    .price small{ font-size: 1rem; color: var(--muted); font-weight: 750; }
-    .fineprint{ color: var(--muted2); font-weight: 650; font-size: .92rem; margin-top: 10px; }
-
-    /* Photos */
-    .photo-grid{ display:grid; grid-template-columns: repeat(12, 1fr); gap: 12px; margin-top: 16px; }
-    .ph{
-      grid-column: span 4;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      overflow:hidden;
-      position:relative;
-      min-height: 150px;
-    }
-    .ph .cap{
-      position:absolute; inset:auto 10px 10px 10px;
-      padding: 10px 10px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.38);
-      backdrop-filter: blur(10px);
-      color: rgba(255,255,255,.88);
-      font-weight: 750;
-      font-size: .95rem;
-    }
-    .ph::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(600px 240px at 10% 10%, rgba(124,92,255,.22), transparent 55%),
-        radial-gradient(500px 240px at 90% 30%, rgba(39,224,179,.16), transparent 55%),
-        linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.12));
-      opacity: .95;
-    }
-    .ph > *{ position:relative; z-index:1; }
-
-    /* Contact */
-    .contact-wrap{
-      display:grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 14px;
-      align-items: start;
-      margin-top: 16px;
-    }
-    form{ display:grid; gap: 12px; margin-top: 10px; }
-    .field{ display:grid; gap: 6px; }
-    label{ color: rgba(255,255,255,.82); font-weight: 750; font-size: .92rem; }
-    input, textarea{
-      width: 100%;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.18);
-      color: var(--text);
-      padding: 12px 12px;
-      outline: none;
-      font: inherit;
-    }
-    textarea{ min-height: 120px; resize: vertical; }
-    input:focus, textarea:focus{ border-color: rgba(124,92,255,.55); box-shadow: 0 0 0 4px rgba(124,92,255,.12); }
-    .helper{ color: var(--muted2); font-weight: 650; font-size: .92rem; margin-top: 10px; }
-
-    .contact-cards{ display:grid; gap: 12px; }
-    .contact-card{ border-radius: var(--radius); border: 1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.04); padding: 16px; }
-    .contact-card b{ display:block; margin-bottom: 6px; }
-    .contact-card p{ margin: 0; color: var(--muted); font-weight: 600; }
-    .contact-actions{ display:flex; flex-wrap:wrap; gap: 10px; margin-top: 12px; }
-
-    /* FAQ */
-    details{
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      border-radius: 16px;
-      padding: 14px 14px;
-      box-shadow: 0 12px 38px rgba(0,0,0,.18);
-    }
-    details + details{ margin-top: 10px; }
-    summary{ cursor:pointer; font-weight: 850; color: rgba(255,255,255,.90); }
-    details p{ margin: 10px 0 0; color: var(--muted); font-weight: 600; }
-
-    footer{ padding: 26px 0 34px; border-top: 1px solid rgba(255,255,255,.08); color: var(--muted2); font-weight: 650; }
-    .foot{ display:flex; align-items:center; justify-content:space-between; gap: 12px; flex-wrap:wrap; }
-
-    /* Small screens */
-    @media (max-width: 900px){
-      .hero-grid{ grid-template-columns: 1fr; }
-      nav ul{ display:none; }
-      .menu-btn{ display:inline-flex; }
-      .mobile-nav{ display:block; }
-      .grid{ gap: 12px; }
-      .card{ grid-column: span 6; }
-      .split{ grid-template-columns: 1fr; }
-      .contact-wrap{ grid-template-columns: 1fr; }
-      .ph{ grid-column: span 6; }
-    }
-    @media (max-width: 560px){
-      .card{ grid-column: span 12; }
-      .trust span{ width: 100%; justify-content:flex-start; }
-      .btn{ width: 100%; }
-      .nav-right .btn.ghost{ display:none; }
-      .ph{ grid-column: span 12; }
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      html{ scroll-behavior: auto; }
-      .btn, .card{ transition: none; }
-    }
-  </style>
-
-  <!-- LocalBusiness structured data (safe + simple) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Bradley Richards Personal Training",
-    "description": "Mobile personal training in Carmarthenshire: weight loss, corrective exercise, boxing, strength, HIIT, rehab & mobility, and nutrition structure.",
-    "telephone": "+44 7309 543361",
-    "email": "bradabr@protonmail.com",
-    "areaServed": "Llandeilo & Carmarthenshire, United Kingdom",
-    "sameAs": []
-  }
-  </script>
+footer{
+padding:30px 0;
+border-top:1px solid #1f2a36;
+color:var(--muted);
+font-size:.9rem;
+}
+</style>
 </head>
 
 <body>
-  <header>
-    <div class="container">
-      <div class="nav">
-        <a class="brand" href="#top" aria-label="Go to top">
-          <span class="brand-badge">BR</span>
-          <span>
-            Bradley Richards
-            <small>Mobile PT • Carmarthenshire</small>
-          </span>
-        </a>
 
-        <nav aria-label="Primary">
-          <ul>
-            <li><a href="#how">How it works</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
+<header>
+<div class="container">
+<div class="brand">Fighting Fit</div>
+</div>
+</header>
 
-        <div class="nav-right">
-          <a class="btn primary" href="#contact">Check availability</a>
-          <button class="btn menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileNav">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-            Menu
-          </button>
-        </div>
-      </div>
+<section class="hero">
+<div class="container">
+<h1>Friendly, holistic coaching — <br><span class="highlight">at your convenience.</span></h1>
+<p>
+Fighting Fit is mobile personal training designed around you.  
+Indoors or outdoors. At home, in your garden, or a local green space.  
+30, 60 or 90 minute sessions tailored to your goals.
+</p>
+<a href="#contact" class="btn">Check Availability</a>
+</div>
+</section>
 
-      <div class="mobile-nav" id="mobileNav" hidden>
-        <a href="#how">How it works</a>
-        <a href="#services">Services</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </div>
-  </header>
+<section>
+<div class="container">
+<h2>We Come To You</h2>
+<div class="grid grid-3">
+<div class="card">
+<h3>Home Sessions</h3>
+<p>Private training in your living room, garage or garden. No gym intimidation.</p>
+</div>
+<div class="card">
+<h3>Outdoor Training</h3>
+<p>Fresh air sessions in parks, fields or local spaces — energising and effective.</p>
+</div>
+<div class="card">
+<h3>All Equipment Included</h3>
+<p>I bring everything needed so you can focus on showing up and progressing.</p>
+</div>
+</div>
+</div>
+</section>
 
-  <main id="top">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="container">
-        <span class="pill"><span class="dot"></span> Mobile Personal Training • Llandeilo & Carmarthenshire • 90-min evening sessions • Equipment included</span>
+<section>
+<div class="container">
+<h2>Session Options</h2>
+<div class="grid grid-3">
+<div class="card">
+<h3>30 Minutes</h3>
+<p>Focused, efficient sessions for busy schedules.</p>
+</div>
+<div class="card">
+<h3>60 Minutes</h3>
+<p>Balanced sessions with warm-up, training and progression work.</p>
+</div>
+<div class="card">
+<h3>90 Minutes</h3>
+<p>Comprehensive coaching including mobility, strength and deeper skill work.</p>
+</div>
+</div>
+</div>
+</section>
 
-        <div class="hero-grid">
-          <div>
-            <h1>Private coaching at home—<br/>built for results and consistency.</h1>
-            <p class="lead">
-              I’m <b>Bradley Richards</b>, a <b>Level 4 Personal Trainer</b> (NASM Level 3 & 4), specialising in <b>weight loss</b> and <b>corrective exercise</b>. My sessions are typically <b>around 90 minutes</b>, giving us time for proper warm-up, coaching, and progression—without rushing.
-            </p>
+<section>
+<div class="container">
+<h2>Our Approach</h2>
+<div class="grid grid-2">
+<div class="card">
+<h3>Holistic Coaching</h3>
+<p>
+Training, movement quality, recovery, and sustainable nutrition habits — working together.
+</p>
+</div>
+<div class="card">
+<h3>Safe & Sustainable</h3>
+<p>
+We prioritise longevity. Smart programming, proper technique and steady progression.
+</p>
+</div>
+</div>
+</div>
+</section>
 
-            <div class="notice" role="note" aria-label="Availability note">
-              <span class="dot" aria-hidden="true"></span>
-              <div>
-                <b>Limited evening availability</b>
-                <small>I offer a small number of <b>90-minute evening</b> coaching slots each week from <b>Llandeilo</b> across Carmarthenshire. Message to check openings.</small>
-              </div>
-            </div>
+<section>
+<div class="container">
+<h2>Training Styles We Offer</h2>
+<div class="grid grid-3">
+<div class="card"><p>Strength & Resistance Training</p></div>
+<div class="card"><p>Corrective Exercise</p></div>
+<div class="card"><p>Weight Loss Coaching</p></div>
+<div class="card"><p>Boxing & Pad Work</p></div>
+<div class="card"><p>HIIT & Conditioning</p></div>
+<div class="card"><p>Mobility & Rehab-Focused Training</p></div>
+</div>
+</div>
+</section>
 
-            <div class="hero-actions">
-              <a class="btn primary" id="ctaWhatsApp" href="#contact" aria-label="Check availability on WhatsApp">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M20.5 11.8a8.5 8.5 0 0 1-12.6 7.5L4 20l.8-3.7A8.5 8.5 0 1 1 20.5 11.8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                  <path d="M8.7 9.3c.4-1 .9-1.1 1.3-1.1.3 0 .6 0 .9.7.3.7.6 1.4.5 1.6-.1.2-.2.4-.4.6-.2.2-.4.4-.2.8.2.4.9 1.4 1.9 2.2 1.3 1.1 2.4 1.4 2.8 1.6.4.2.6.2.8-.1.2-.3.9-1 .9-1s.4-.2.8 0c.4.2 2.5 1.2 2.5 1.6 0 .4-.2 1.6-.9 2-.7.4-1.6.6-3.4-.1-1.8-.7-4.1-2.2-5.7-4.4-1.6-2.2-2.1-3.9-2.2-4.6-.1-.7.2-1.4.3-1.8Z" fill="currentColor" opacity=".85"/>
-                </svg>
-                WhatsApp to check slots
-              </a>
-              <a class="btn" href="tel:+447309543361" aria-label="Call Bradley Richards">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M6.6 10.8c1.5 3 3.6 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.1 21 3 13.9 3 5c0-.6.4-1 1-1h3.2c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1l-2.2 2.2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                </svg>
-                Call
-              </a>
-              <a class="btn ghost" href="#pricing">View pricing</a>
-            </div>
+<section>
+<div class="container">
+<h2>Experience & Qualifications</h2>
+<div class="card">
+<p>
+• Level 3 Personal Trainer  
+• Level 4 Corrective Exercise Specialist (CES)  
+• Level 4 Weight Loss Specialist (WLS)  
+• 10 Years Coaching Experience (1-to-1 & Group Training)
+</p>
+</div>
+</div>
+</section>
 
-            <div class="trust" aria-label="Highlights">
-              <span>
-                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M12 2l3 7 7 .6-5.3 4.6 1.7 7-6.4-3.8-6.4 3.8 1.7-7L2 9.6 9 9l3-7Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                </svg>
-                10+ years coaching
-              </span>
-              <span>
-                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M12 21s7-4.6 7-11V5l-7-3-7 3v5c0 6.4 7 11 7 11Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                </svg>
-                NASM Level 3 & 4
-              </span>
-              <span>
-                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M4 20V10l8-6 8 6v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M9 20v-6h6v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                At-home sessions
-              </span>
-            </div>
-          </div>
+<section id="contact">
+<div class="container">
+<h2>Get Started</h2>
+<p>
+Tell me your goal, location, and preferred session length (30/60/90 minutes).  
+I’ll recommend the best approach and available times.
+</p>
+<a href="https://wa.me/447309543361" class="btn">Message on WhatsApp</a>
+</div>
+</section>
 
-          <aside class="hero-card" aria-label="Quick overview card">
-            <div class="profile">
-              <div class="avatar" aria-hidden="true">BR</div>
-              <div>
-                <div class="name">Bradley Richards</div>
-                <div class="meta">Mobile PT • 90-min sessions • Llandeilo & Carmarthenshire</div>
-              </div>
-            </div>
+<footer>
+<div class="container">
+Fighting Fit — Mobile Personal Training • Carmarthenshire  
+</div>
+</footer>
 
-            <ul class="quick-list">
-              <li>
-                <div class="check" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path d="m20 6-11 11-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </div>
-                <div>
-                  <b>Private, structured coaching</b>
-                  <span>Training + mobility + nutrition structure + accountability.</span>
-                </div>
-              </li>
-              <li>
-                <div class="check" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path d="m20 6-11 11-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </div>
-                <div>
-                  <b>90-minute evening sessions</b>
-                  <span>Time for warm-up, training, mobility and coaching—without rushing.</span>
-                </div>
-              </li>
-              <li>
-                <div class="check" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path d="m20 6-11 11-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </div>
-                <div>
-                  <b>Based in Llandeilo</b>
-                  <span>Mobile sessions across Carmarthenshire. Outside-area travel by arrangement.</span>
-                </div>
-              </li>
-            </ul>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <!-- HOW IT WORKS -->
-    <section id="how">
-      <div class="container">
-        <div class="section-title">
-          <div>
-            <h2>How it works</h2>
-            <p class="section-sub">A simple process—so you can get started quickly, even with limited time.</p>
-          </div>
-        </div>
-
-        <div class="grid steps" role="list">
-          <article class="card" role="listitem">
-            <div class="step-num">1</div>
-            <h3>Message me</h3>
-            <p>Tell me your goal, location, and which evenings you can train.</p>
-          </article>
-          <article class="card" role="listitem">
-            <div class="step-num">2</div>
-            <h3>Quick assessment</h3>
-            <p>We assess movement, injuries, and what’s realistic for your schedule.</p>
-          </article>
-          <article class="card" role="listitem">
-            <div class="step-num">3</div>
-            <h3>Train + progress</h3>
-            <p>I bring equipment and structure sessions so you progress week by week.</p>
-          </article>
-        </div>
-
-        <div class="hero-actions" style="margin-top:16px;">
-          <a class="btn primary" href="#contact">Check evening availability</a>
-          <a class="btn ghost" href="#services">See services</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- WHO I HELP -->
-    <section id="who">
-      <div class="container">
-        <div class="section-title">
-          <div>
-            <h2>Who I work best with</h2>
-            <p class="section-sub">If you want high standards, discretion, and a coach who takes the thinking off your plate—this is for you.</p>
-          </div>
-        </div>
-
-        <div class="grid" role="list">
-          <article class="card" role="listitem">
-            <h3>Busy professionals</h3>
-            <p>Evening sessions with a plan—so training actually fits your week.</p>
-            <div class="tagrow"><span class="tag">Evenings</span><span class="tag">Efficiency</span><span class="tag">Accountability</span></div>
-          </article>
-          <article class="card" role="listitem">
-            <h3>Beginners who want confidence</h3>
-            <p>Coaching-first sessions—technique, progression, and safe intensity.</p>
-            <div class="tagrow"><span class="tag">Beginner-friendly</span><span class="tag">Technique</span><span class="tag">Progressions</span></div>
-          </article>
-          <article class="card" role="listitem">
-            <h3>Return-to-training</h3>
-            <p>Mobility + strength + sensible loading if you’ve had injuries or setbacks.</p>
-            <div class="tagrow"><span class="tag">Rehab-aware</span><span class="tag">Mobility</span><span class="tag">Consistency</span></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section id="services">
-      <div class="container">
-        <div class="section-title">
-          <div>
-            <h2>Services</h2>
-            <p class="section-sub">Choose the focus—I'll tailor the plan to your goal, equipment, and time.</p>
-          </div>
-        </div>
-
-        <div class="grid" role="list">
-          <article class="card" role="listitem">
-            <h3>Weight Loss Coaching</h3>
-            <p>Structured training plus realistic habits to make progress you can keep.</p>
-            <div class="tagrow"><span class="tag">Fat loss</span><span class="tag">Accountability</span><span class="tag">Lifestyle</span></div>
-          </article>
-          <article class="card" role="listitem">
-            <h3>Corrective Exercise</h3>
-            <p>Improve movement quality, posture, and strength where it matters most.</p>
-            <div class="tagrow"><span class="tag">Assessment-led</span><span class="tag">Technique</span><span class="tag">Progressions</span></div>
-          </article>
-          <article class="card" role="listitem">
-            <h3>Boxing Training</h3>
-            <p>Pad work, footwork, conditioning, and confidence—beginner to advanced.</p>
-            <div class="tagrow"><span class="tag">Pads</span><span class="tag">Footwork</span><span class="tag">Conditioning</span></div>
-          </article>
-          <article class="card" role="listitem">
-            <h3>Resistance Training</h3>
-            <p>Build strength and shape with intelligent programming and great form.</p>
-            <div class="tagrow"><span class="tag">Strength</span><span class="tag">Muscle tone</span><span class="tag">Performance</span></div>
-          </article>
-          <article class="card" role="listitem">
-            <h3>HIIT & Conditioning</h3>
-            <p>Efficient sessions that challenge you—scaled safely for your fitness level.</p>
-            <div class="tagrow"><span class="tag">HIIT</span><span class="tag">Fitness</span><span class="tag">Energy</span></div>
-          </article>
-          <article class="card" role="listitem">
-            <h3>Rehab & Mobility</h3>
-            <p>Mobility-focused work to restore function and keep you training consistently.</p>
-            <div class="tagrow"><span class="tag">Mobility</span><span class="tag">Stability</span><span class="tag">Recovery</span></div>
-          </article>
-        </div>
-
-        <div class="hero-actions" style="margin-top:16px;">
-          <a class="btn primary" href="#contact">Ask what fits your goal</a>
-          <a class="btn ghost" href="#pricing">See pricing</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- APPROACH -->
-    <section id="approach">
-      <div class="container">
-        <div class="section-title">
-          <div>
-            <h2>My approach</h2>
-            <p class="section-sub">Holistic coaching that blends training, movement quality, recovery, and lifestyle—so results actually stick.</p>
-          </div>
-        </div>
-
-        <div class="split">
-          <div class="panel">
-            <h3>What you can expect</h3>
-            <ul>
-              <li><b>Assessment-led training:</b> goals, movement, constraints (time, equipment, injuries).</li>
-              <li><b>Clear progression:</b> you’ll know what we’re doing, why, and what comes next.</li>
-              <li><b>Coaching, not punishing:</b> intensity with purpose—always safe and intelligent.</li>
-              <li><b>Equipment included:</b> I bring what’s needed so you can focus on showing up.</li>
-            </ul>
-          </div>
-          <div class="panel">
-            <h3>Training pillars</h3>
-            <ul>
-              <li><b>Strength:</b> strong bodies perform better and stay leaner.</li>
-              <li><b>Conditioning:</b> energy, work capacity, confidence.</li>
-              <li><b>Mobility & control:</b> move well to train consistently.</li>
-              <li><b>Nutrition structure:</b> simple habits that suit your routine.</li>
-              <li><b>Mindset:</b> consistency beats intensity—every time.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PRICING -->
-    <section id="pricing">
-      <div class="container">
-        <div class="section-title">
-          <div>
-            <h2>Pricing</h2>
-            <p class="section-sub">Simple pricing, limited slots. Sessions are typically <b>around 90 minutes</b>. Most clients do 1–3 sessions per week depending on goals.</p>
-          </div>
-        </div>
-
-        <div class="grid pricing-grid" role="list">
-          <article class="card" role="listitem">
-            <h3>Single session</h3>
-            <div class="price">£40 <small>/ ~90 mins</small></div>
-            <p>Mobile 1:1 coaching session with equipment included.</p>
-            <div class="tagrow"><span class="tag">Best for trial</span><span class="tag">Pay as you go</span></div>
-          </article>
-
-          <article class="card" role="listitem" style="border-color: rgba(124,92,255,.35); background: rgba(124,92,255,.08);">
-            <h3>Priority block</h3>
-            <div class="price">£40 <small>/ ~90 mins</small></div>
-            <p>Block booking to secure a consistent evening slot week to week.</p>
-            <div class="tagrow"><span class="tag">Consistency</span><span class="tag">Priority evenings</span><span class="tag">Progress</span></div>
-            <p class="fineprint">Ask me about block options (I’ll recommend the right frequency).</p>
-          </article>
-
-          <article class="card" role="listitem">
-            <h3>Small group</h3>
-            <div class="price">From £40 <small>/ ~90 mins</small></div>
-            <p>Train with a partner/friend for accountability and energy.</p>
-            <div class="tagrow"><span class="tag">2–4 people</span><span class="tag">By arrangement</span></div>
-            <p class="fineprint">Pricing depends on group size and travel.</p>
-          </article>
-        </div>
-
-        <p class="fineprint">Note: sessions are mainly evenings and typically run ~90 minutes. Travel across Carmarthenshire is included in most cases; longer distances may require a travel fee.</p>
-
-        <div class="hero-actions" style="margin-top:16px;">
-          <a class="btn primary" href="#contact">Message me to book</a>
-          <a class="btn ghost" href="#faq">Read FAQ</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- PHOTOS (PLACEHOLDER) -->
-    <section id="photos">
-      <div class="container">
-        <div class="section-title">
-          <div>
-            <h2>Training snapshots</h2>
-            <p class="section-sub">Add 6–12 real photos here when you have them (you coaching, equipment setup, pads, outdoor sessions). Authentic beats perfect.</p>
-          </div>
-        </div>
-
-        <div class="photo-grid" aria-label="Photo placeholders">
-          <div class="ph"><div class="cap">You coaching (1:1)</div></div>
-          <div class="ph"><div class="cap">Equipment setup</div></div>
-          <div class="ph"><div class="cap">Boxing pads</div></div>
-          <div class="ph"><div class="cap">Outdoor conditioning</div></div>
-          <div class="ph"><div class="cap">Mobility / rehab work</div></div>
-          <div class="ph"><div class="cap">Before/after (optional)</div></div>
-        </div>
-
-        <p class="fineprint">Tip: once you have photos, replace these placeholders with <code>&lt;img&gt;</code> tags (I can do that for you when you’re ready).</p>
-      </div>
-    </section>
-
-    <!-- CREDENTIALS -->
-    <section id="credentials">
-      <div class="container">
-        <div class="section-title">
-          <div>
-            <h2>Credentials & experience</h2>
-            <p class="section-sub">Professional, discreet, and tailored—whether you’re just starting or training at a high level.</p>
-          </div>
-        </div>
-
-        <div class="grid">
-          <article class="card" style="grid-column: span 6;">
-            <h3>Qualifications</h3>
-            <p><b>Level 4 Personal Trainer</b> • <b>NASM Level 3 & 4</b><br/>Corrective exercise focus with a results-driven coaching style.</p>
-            <div class="tagrow"><span class="tag">Level 4 PT</span><span class="tag">NASM</span><span class="tag">Corrective exercise</span></div>
-          </article>
-          <article class="card" style="grid-column: span 6;">
-            <h3>Over a decade coaching</h3>
-            <p>10+ years training <b>individuals</b>, <b>groups</b>, and <b>sports teams</b>, including <b>5 years in Kuwait</b> working with high net-worth clients.</p>
-            <div class="tagrow"><span class="tag">1:1</span><span class="tag">Groups</span><span class="tag">Teams</span><span class="tag">Kuwait (5 yrs)</span></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq">
-      <div class="container">
-        <div class="section-title">
-          <div>
-            <h2>FAQ</h2>
-            <p class="section-sub">Quick answers to the most common questions—especially around evenings and availability.</p>
-          </div>
-        </div>
-
-        <details>
-          <summary>Do you only train in the evenings?</summary>
-          <p>Yes—mostly evenings. Sessions are typically around 90 minutes, and I keep slots limited so each client gets proper attention, consistency, and progression.</p>
-        </details>
-        <details>
-          <summary>Do I need equipment?</summary>
-          <p>No. I bring what’s needed for your session. If you have anything at home (bands, dumbbells, bench), I’ll incorporate it.</p>
-        </details>
-        <details>
-          <summary>Where do you cover?</summary>
-          <p>I’m based in Llandeilo and cover Carmarthenshire. If you’re outside the county, message me and I’ll let you know if it’s workable (travel fee may apply).</p>
-        </details>
-        <details>
-          <summary>How many sessions per week is best?</summary>
-          <p>Most clients do 1–3/week. If time is tight, 1/week plus a simple home plan can still work—consistency matters most.</p>
-        </details>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="container">
-        <div class="section-title">
-          <div>
-            <h2>Check availability</h2>
-            <p class="section-sub">Message your goal + location + which evenings you can train. Sessions are typically around 90 minutes. WhatsApp is preferred (fastest).</p>
-          </div>
-        </div>
-
-        <div class="contact-wrap">
-          <div class="panel">
-            <h3>Send a quick message</h3>
-            <p class="section-sub" style="margin-top:6px;">This form opens WhatsApp (preferred) or your email app—no backend needed for GitHub Pages.</p>
-
-            <form id="contactForm">
-              <div class="field">
-                <label for="name">Name</label>
-                <input id="name" name="name" type="text" placeholder="Your name" autocomplete="name" required />
-              </div>
-
-              <div class="field">
-                <label for="goal">Main goal</label>
-                <input id="goal" name="goal" type="text" placeholder="Weight loss, boxing, rehab, strength…" required />
-              </div>
-
-              <div class="field">
-                <label for="location">Location (area/postcode)</label>
-                <input id="location" name="location" type="text" placeholder="Carmarthenshire area / postcode" />
-              </div>
-
-              <div class="field">
-                <label for="availability">Evening availability</label>
-                <input id="availability" name="availability" type="text" placeholder="e.g. Mon/Wed after 6pm, Fri after 5pm" required />
-              </div>
-
-              <div class="field">
-                <label for="message">Details</label>
-                <textarea id="message" name="message" placeholder="Training history, injuries, preferred session length, anything important…" required></textarea>
-              </div>
-
-              <div class="hero-actions" style="margin-top: 6px;">
-                <button class="btn primary" type="submit" data-mode="whatsapp">
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M20.5 11.8a8.5 8.5 0 0 1-12.6 7.5L4 20l.8-3.7A8.5 8.5 0 1 1 20.5 11.8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                    <path d="M8.7 9.3c.4-1 .9-1.1 1.3-1.1.3 0 .6 0 .9.7.3.7.6 1.4.5 1.6-.1.2-.2.4-.4.6-.2.2-.4.4-.2.8.2.4.9 1.4 1.9 2.2 1.3 1.1 2.4 1.4 2.8 1.6.4.2.6.2.8-.1.2-.3.9-1 .9-1s.4-.2.8 0c.4.2 2.5 1.2 2.5 1.6 0 .4-.2 1.6-.9 2-.7.4-1.6.6-3.4-.1-1.8-.7-4.1-2.2-5.7-4.4-1.6-2.2-2.1-3.9-2.2-4.6-.1-.7.2-1.4.3-1.8Z" fill="currentColor" opacity=".85"/>
-                  </svg>
-                  WhatsApp me
-                </button>
-
-                <button class="btn" type="button" id="sendEmailBtn">
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="2" />
-                    <path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  Email instead
-                </button>
-              </div>
-
-              <p class="helper" id="formHelper">Tip: include which evenings you can train. I’ll reply with available slots and a recommended plan.</p>
-            </form>
-          </div>
-
-          <div class="contact-cards">
-            <div class="contact-card">
-              <b>WhatsApp (preferred)</b>
-              <p><a href="https://wa.me/447309543361" target="_blank" rel="noopener">+44 7309 543361</a></p>
-              <div class="contact-actions">
-                <a class="btn" href="https://wa.me/447309543361" target="_blank" rel="noopener">Open WhatsApp</a>
-                <a class="btn" href="tel:+447309543361">Call</a>
-              </div>
-            </div>
-
-            <div class="contact-card">
-              <b>Email</b>
-              <p><a href="mailto:bradabr@protonmail.com">bradabr@protonmail.com</a></p>
-              <div class="contact-actions">
-                <a class="btn" href="mailto:bradabr@protonmail.com?subject=Personal%20Training%20Enquiry%20(Website)">Email me</a>
-              </div>
-            </div>
-
-            <div class="contact-card">
-              <b>What to send</b>
-              <p>Goal • location • evening availability • training background • injuries/limitations • preferred session length.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <div class="foot">
-        <div>© <span id="year"></span> Bradley Richards • Mobile Personal Training</div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <a class="pill" href="#top" aria-label="Back to top">Back to top ↑</a>
-          <span class="pill">WhatsApp: 07309 543361</span>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // ===== Utilities =====
-    const byId = (id) => document.getElementById(id);
-
-    const PHONE_E164 = "447309543361"; // wa.me uses country code without "+"
-    const EMAIL = "bradabr@protonmail.com";
-
-    function buildMessage(){
-      const name = byId("name")?.value.trim();
-      const goal = byId("goal")?.value.trim();
-      const location = byId("location")?.value.trim();
-      const availability = byId("availability")?.value.trim();
-      const msg = byId("message")?.value.trim();
-
-      const lines = [
-        "Hi Bradley,",
-        "",
-        `Name: ${name || "-"}`,
-        `Goal: ${goal || "-"}`,
-        `Location: ${location || "-"}`,
-        `Evening availability: ${availability || "-"}`,
-        "",
-        "Details:",
-        msg || "-",
-        "",
-        "Sent from your website."
-      ];
-      return lines.join("\n");
-    }
-
-    function openWhatsApp(textOverride){
-      const text = encodeURIComponent(textOverride || buildMessage());
-      window.open(`https://wa.me/${PHONE_E164}?text=${text}`, "_blank", "noopener");
-    }
-
-    function openEmail(){
-      const subject = encodeURIComponent("Personal Training Enquiry (Website)");
-      const body = encodeURIComponent(buildMessage());
-      window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
-    }
-
-    // ===== Header mobile menu =====
-    const menuBtn = byId("menuBtn");
-    const mobileNav = byId("mobileNav");
-
-    menuBtn?.addEventListener("click", () => {
-      const isOpen = menuBtn.getAttribute("aria-expanded") === "true";
-      menuBtn.setAttribute("aria-expanded", String(!isOpen));
-      mobileNav.hidden = isOpen;
-    });
-
-    mobileNav?.querySelectorAll("a").forEach(a => {
-      a.addEventListener("click", () => {
-        menuBtn.setAttribute("aria-expanded", "false");
-        mobileNav.hidden = true;
-      });
-    });
-
-    // ===== Contact form behavior =====
-    const form = byId("contactForm");
-    const sendEmailBtn = byId("sendEmailBtn");
-
-    form?.addEventListener("submit", (e) => {
-      e.preventDefault();
-      openWhatsApp();
-    });
-
-    sendEmailBtn?.addEventListener("click", () => {
-      const requiredIds = ["name", "goal", "availability", "message"];
-      const missing = requiredIds.some(id => !byId(id).value.trim());
-
-      if (missing) {
-        const helper = byId("formHelper");
-        helper.textContent = "Please fill in Name, Goal, Evening availability, and Details before sending.";
-        helper.style.color = "rgba(39,224,179,.95)";
-        setTimeout(() => {
-          helper.textContent = "Tip: include which evenings you can train. I’ll reply with available slots and a recommended plan.";
-          helper.style.color = "";
-        }, 3500);
-        return;
-      }
-      openEmail();
-    });
-
-    // ===== Hero CTA: quick WhatsApp =====
-    const ctaWhatsApp = byId("ctaWhatsApp");
-    ctaWhatsApp?.addEventListener("click", (e) => {
-      // Alt/Option click opens WhatsApp immediately (otherwise scrolls to contact)
-      if (e.altKey) {
-        e.preventDefault();
-        openWhatsApp("Hi Bradley, I’m in Carmarthenshire and I’d like to check evening availability for personal training.");
-      }
-    });
-
-    // Footer year
-    byId("year").textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
